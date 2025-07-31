@@ -1,0 +1,56 @@
+package com.romy.clinica.clinica.modules.services.paciente;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.romy.clinica.clinica.dto.paciente.PacienteDTORequest;
+import com.romy.clinica.clinica.dto.paciente.PacienteDTOResponse;
+import com.romy.clinica.clinica.errors.error_types.PacienteNotFoundException;
+import com.romy.clinica.clinica.modules.models.entities.PacienteEntity;
+import com.romy.clinica.clinica.modules.models.repositories.PacienteRepository;
+
+public class PacienteUpdateService {
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
+
+    public PacienteDTOResponse execute (PacienteDTORequest pacienteDTORequest, String cpf) {
+        var pacienteEntity = findInDB(cpf);
+        var updatedPacienteEntity = updatePaciente(pacienteDTORequest, pacienteEntity);
+        savePaciente(updatedPacienteEntity);
+        var pacienteDTOResponse = formattedResponse(updatedPacienteEntity);
+
+        return pacienteDTOResponse;
+    }
+
+    private PacienteEntity findInDB(String cpf){
+       if(this.pacienteRepository.findByCpf(cpf).isEmpty()){
+           throw new PacienteNotFoundException();
+       }
+
+       return this.pacienteRepository.findByCpf(cpf).get();
+
+    }
+
+
+    private PacienteEntity updatePaciente(PacienteDTORequest pacienteDTORequest, PacienteEntity pacienteEntity){
+        pacienteEntity.setNome(pacienteDTORequest.getNome());
+        pacienteEntity.setTelefone(pacienteDTORequest.getTelefone());
+        pacienteEntity.setEmail(pacienteDTORequest.getEmail());
+        pacienteEntity.setDataNascimento(pacienteDTORequest.getDataNascimento());
+        return pacienteEntity;
+    }
+
+    private void savePaciente(PacienteEntity pacienteEntity){
+        this.pacienteRepository.save(pacienteEntity);
+    }
+
+    private PacienteDTOResponse formattedResponse(PacienteEntity pacienteEntity){
+        var pacienteDTOResponse = PacienteDTOResponse.builder()
+                .nome(pacienteEntity.getNome())
+                .email(pacienteEntity.getEmail())
+                .telefone(pacienteEntity.getTelefone())
+                .build();
+
+        return pacienteDTOResponse;
+    }
+}
