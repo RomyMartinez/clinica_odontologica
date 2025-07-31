@@ -1,7 +1,9 @@
 package com.romy.clinica.clinica.modules.models.entities;
 
 import java.util.List;
+import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +17,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "dentist")
+@Entity(name = "dentista")
 @Data
 @Builder
 @AllArgsConstructor
@@ -23,14 +25,21 @@ import lombok.NoArgsConstructor;
 public class DentistaEntity {
 
     @Id
+    @NotBlank()
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @NotBlank
     private String nome;
 
     @NotBlank
     private String cro;
+
+    @NotBlank
+    private String cpf;
+
+    @Column(nullable = false)
+    private Boolean ativo;
 
     @NotBlank
     private String especialidade;
