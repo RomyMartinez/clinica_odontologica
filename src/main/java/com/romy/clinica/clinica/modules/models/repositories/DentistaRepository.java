@@ -10,5 +10,5 @@ import com.romy.clinica.clinica.modules.models.entities.DentistaEntity;
 
 public interface DentistaRepository extends JpaRepository<DentistaEntity, UUID> {
     Optional<DentistaEntity> findByCpf(String cpf);
-    List<DentistaEntity> findAllIfAtivoTrue();
+    List<DentistaEntity> findAllByAtivoTrue();
 }
