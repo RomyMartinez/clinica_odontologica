@@ -12,7 +12,7 @@ public class DentistaCreateService {
     @Autowired
     private DentistaRepository dentistaRepository;
     
-    public DentistaDTOResponse createDentista(DentistaDTORequest dentistaDTORequest){
+    public DentistaDTOResponse execute(DentistaDTORequest dentistaDTORequest){
         validateIfDentistaAlreadyExists(dentistaDTORequest.getCpf());
         var dentistaSaved = insertDentista(dentistaDTORequest);
         var dentistaDTOResponse = formattedResponse(dentistaSaved);
@@ -35,6 +35,7 @@ public class DentistaCreateService {
                 .cpf(dentistaDTORequest.getCpf())
                 .nome(dentistaDTORequest.getNome())
                 .cro(dentistaDTORequest.getCro())
+                .email(dentistaDTORequest.getEmail())
                 .especialidade(dentistaDTORequest.getEspecialidade())
                 .ativo(true)
                 .build();

@@ -22,7 +22,7 @@ public class DentistaListService {
     }
 
     private List<DentistaEntity> listarDentistas(){
-        return this.dentistaRepository.findAllIfAtivoTrue();
+        return this.dentistaRepository.findAllByAtivoTrue();
     }
 
     private List<DentistaDTOResponse> formatDentistas(List<DentistaEntity> dentistas){

@@ -1,5 +1,6 @@
 package com.romy.clinica.clinica.dto.dentista;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,11 @@ public class DentistaDTORequest {
     private String nome;
 
     @NotBlank()
-    @Pattern(regexp = "^[0-9]{2}$", message = "Cro deve conter 2 dígitos")
+    @Email(message = "Email inválido")
+    private String email;
+
+    @NotBlank()
+    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Cro deve conter 10 dígitos")
     private String cro;
 
     @NotBlank()

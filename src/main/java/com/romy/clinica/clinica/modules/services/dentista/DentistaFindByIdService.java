@@ -11,20 +11,20 @@ import com.romy.clinica.clinica.modules.models.entities.DentistaEntity;
 import com.romy.clinica.clinica.modules.models.repositories.DentistaRepository;
 
 @Service
-public class DentistaFindByCpfService {
+public class DentistaFindByIdService {
     @Autowired
     private DentistaRepository dentistaRepository;
 
-    public DentistaDTOResponse execute(String cpf){
-        var dentista = findByCpf(cpf);
+    public DentistaDTOResponse execute(String id){
+        var dentista = findByIdinDB(id);
         var dentistaDTOResponse = formatResponse(dentista);
 
         return dentistaDTOResponse;
     }
 
-    private DentistaEntity findByCpf(String cpf){
-        UUID uuid = UUID.fromString(cpf);
-        if(this.dentistaRepository.findByCpf(cpf).isEmpty()){
+    private DentistaEntity findByIdinDB(String id){
+        UUID uuid = UUID.fromString(id);
+        if(this.dentistaRepository.findById(uuid).isEmpty()){
             throw new DentistaNotFoundExeception();
         }
 

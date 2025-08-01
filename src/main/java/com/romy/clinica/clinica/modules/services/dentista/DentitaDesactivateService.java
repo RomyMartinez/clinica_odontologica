@@ -1,5 +1,7 @@
 package com.romy.clinica.clinica.modules.services.dentista;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class DentitaDesactivateService {
     @Autowired
     private DentistaRepository dentistaRepository;
 
-    public HttpDTOResponse execute(String cpf){
-        var dentista = findInDB(cpf);
+    public HttpDTOResponse execute(String id){
+        var dentista = findInDB(id);
         var dentistaDesativado = desativarDentista(dentista);
         salvarDentista(dentistaDesativado);
         var httpDTOResponse = formatResponse();
@@ -23,8 +25,9 @@ public class DentitaDesactivateService {
         return httpDTOResponse;
     }
 
-    private DentistaEntity findInDB(String cpf){
-        var dentista = this.dentistaRepository.findByCpf(cpf);
+    private DentistaEntity findInDB(String id){
+        var uuid = UUID.fromString(id);
+        var dentista = this.dentistaRepository.findById(uuid);
         if(dentista.isEmpty()){
             throw new DentistaNotFoundExeception();
         }

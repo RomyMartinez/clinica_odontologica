@@ -1,6 +1,7 @@
 package com.romy.clinica.clinica.modules.services.paciente;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.romy.clinica.clinica.dto.paciente.PacienteDTORequest;
 import com.romy.clinica.clinica.dto.paciente.PacienteDTOResponse;
@@ -8,6 +9,7 @@ import com.romy.clinica.clinica.errors.error_types.PacienteNotFoundException;
 import com.romy.clinica.clinica.modules.models.entities.PacienteEntity;
 import com.romy.clinica.clinica.modules.models.repositories.PacienteRepository;
 
+@Service
 public class PacienteUpdateService {
     @Autowired
     private PacienteRepository pacienteRepository;
