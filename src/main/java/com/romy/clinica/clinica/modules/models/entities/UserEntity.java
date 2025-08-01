@@ -1,5 +1,7 @@
 package com.romy.clinica.clinica.modules.models.entities;
 
+import java.util.UUID;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.romy.clinica.clinica.modules.models.enumTypes.Role;
@@ -15,7 +17,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "user")
+@Entity(name = "users")
 @Data
 @Builder
 @AllArgsConstructor
@@ -24,7 +26,7 @@ public class UserEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]+$")
