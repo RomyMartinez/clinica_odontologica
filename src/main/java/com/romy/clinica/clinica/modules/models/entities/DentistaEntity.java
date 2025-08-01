@@ -35,6 +35,9 @@ public class DentistaEntity {
     @NotBlank
     private String cro;
 
+    @NotBlank()
+    private String email;
+
     @NotBlank
     private String cpf;
 
@@ -44,10 +47,12 @@ public class DentistaEntity {
     @NotBlank
     private String especialidade;
 
+
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = true)
     private UserEntity user;
 
-    @OneToMany(mappedBy = "dentist")
+
+    @OneToMany(mappedBy = "dentista")
     private List<ConsultaEntity> consultas;
 }

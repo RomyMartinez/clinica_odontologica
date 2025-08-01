@@ -1,6 +1,7 @@
 package com.romy.clinica.clinica.modules.models.entities;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -29,7 +30,7 @@ import lombok.NoArgsConstructor;
 public class ConsultaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @NotNull
     private LocalDateTime dataHora;
@@ -40,10 +41,10 @@ public class ConsultaEntity {
     private StatusConsulta status;
 
     @Column(name = "patient_id")
-    private String patientId;
+    private UUID patientId;
 
     @Column(name = "dentist_id")
-    private String dentistId;
+    private UUID dentistId;
 
     @ManyToOne
     @JoinColumn(name = "patient_id", insertable = false, updatable = false)
@@ -51,7 +52,7 @@ public class ConsultaEntity {
 
     @ManyToOne
     @JoinColumn(name = "dentist_id", insertable = false, updatable = false)
-    private DentistaEntity dentist;
+    private DentistaEntity dentista;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
