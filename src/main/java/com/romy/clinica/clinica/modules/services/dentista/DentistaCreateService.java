@@ -1,6 +1,7 @@
 package com.romy.clinica.clinica.modules.services.dentista;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.romy.clinica.clinica.dto.dentista.DentistaDTORequest;
 import com.romy.clinica.clinica.dto.dentista.DentistaDTOResponse;
@@ -8,6 +9,8 @@ import com.romy.clinica.clinica.errors.error_types.DentistaFoundException;
 import com.romy.clinica.clinica.modules.models.entities.DentistaEntity;
 import com.romy.clinica.clinica.modules.models.repositories.DentistaRepository;
 
+
+@Service
 public class DentistaCreateService {
     @Autowired
     private DentistaRepository dentistaRepository;
@@ -39,7 +42,7 @@ public class DentistaCreateService {
                 .especialidade(dentistaDTORequest.getEspecialidade())
                 .ativo(true)
                 .build();
-
+        System.out.println("DentistaEntity: " + dentistaEntity);
         return this.dentistaRepository.save(dentistaEntity);
     }
 

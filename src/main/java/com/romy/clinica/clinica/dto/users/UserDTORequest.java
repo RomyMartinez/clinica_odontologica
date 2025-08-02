@@ -6,6 +6,7 @@ import com.romy.clinica.clinica.modules.models.enumTypes.Role;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class UserDTORequest {
 
     @NotBlank()
-    @Pattern(regexp = "\\\\S+", message = "Username deve conter letras")
+    @Pattern(regexp = "\\S+", message = "Username deve conter letras")
     private String username;
 
     @NotBlank()
@@ -31,6 +32,6 @@ public class UserDTORequest {
     @Email(message = "Email inválido")
     private String email;
 
-    @NotBlank()
+    @NotNull(message = "Role deve ser informado")
     private Role role;
 }

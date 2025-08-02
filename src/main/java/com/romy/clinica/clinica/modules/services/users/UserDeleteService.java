@@ -3,8 +3,10 @@ package com.romy.clinica.clinica.modules.services.users;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.stereotype.Service;
 
+import com.romy.clinica.clinica.dto.htttpTypes.HttpDTOResponse;
 import com.romy.clinica.clinica.errors.error_types.UserNotFoundExecption;
 import com.romy.clinica.clinica.modules.models.entities.UserEntity;
 import com.romy.clinica.clinica.modules.models.repositories.UsersRepository;
@@ -14,9 +16,11 @@ public class UserDeleteService {
     @Autowired
     private UsersRepository userRepository;
 
-    public void execute(String id){
+    public HttpDTOResponse execute(String id){
         var user = findInDB(id);
         deleteUser(user);
+
+        return new HttpDTOResponse("User deleted successfully");
     }
 
     private UserEntity findInDB(String id){

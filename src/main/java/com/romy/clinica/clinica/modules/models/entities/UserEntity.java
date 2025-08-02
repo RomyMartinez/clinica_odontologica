@@ -7,6 +7,8 @@ import org.hibernate.validator.constraints.Length;
 import com.romy.clinica.clinica.modules.models.enumTypes.Role;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,12 +35,11 @@ public class UserEntity {
     private String username;
 
     @NotBlank
-    @Length(min = 6, max = 20)
     private String password;
 
     @NotBlank
-    @Length(min = 6, max = 20)
     private String email;
 
+    @Enumerated(EnumType.STRING)
     private Role role;
 }

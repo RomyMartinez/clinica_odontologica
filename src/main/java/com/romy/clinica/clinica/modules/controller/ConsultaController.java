@@ -57,7 +57,7 @@ public class ConsultaController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<Object> consultarFind(@RequestParam String dentistaId){
+    public ResponseEntity<Object> consultarFind(){
         try {
             var consultasDTOResponses = this.consultarListarService.execute();
             return ResponseEntity.ok().body(consultasDTOResponses);
@@ -96,8 +96,8 @@ public class ConsultaController {
         }
     }
 
-    @PatchMapping("/cancelar")
-    public ResponseEntity<Object> consultaCancelar(@RequestParam String id){
+    @PatchMapping("/concluida")
+    public ResponseEntity<Object> consultaConcluida(@RequestParam String id){
         try {
             var consultaDTOResponse = this.consultaConcluidaService.execute(id);
             return ResponseEntity.ok().body(consultaDTOResponse);

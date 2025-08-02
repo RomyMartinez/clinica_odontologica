@@ -26,6 +26,7 @@ public class UserCreateService {
     }
 
     private void verifyIfUserOrEmailAlreadyExists(String username, String email){
+        System.out.println("User: ");
         this.userRepository.findByUsernameOrEmail(username, email).ifPresent(
             user -> {
                 throw new UserFoundException();

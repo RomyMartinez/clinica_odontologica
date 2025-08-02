@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class ConsultaDTORequest {
     @NotBlank()
     private String descricao;
 
-    @NotBlank()
+    @NotNull()
     @Future(message = "Data de consulta deve ser no futuro")
     private LocalDateTime dataHora;
 }

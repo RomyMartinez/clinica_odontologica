@@ -2,6 +2,7 @@ package com.romy.clinica.clinica.modules.services.users;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,7 +60,7 @@ public class UserLoginService {
         var token = JWT.create().withIssuer("clinica")
                 .withSubject(user.getUsername())
                 .withExpiresAt(duration)
-                .withClaim("role", user.getRole().name())
+                .withClaim("roles", Arrays.asList(user.getRole().name().toUpperCase()))
                 .sign(algorithm);
 
         return token;

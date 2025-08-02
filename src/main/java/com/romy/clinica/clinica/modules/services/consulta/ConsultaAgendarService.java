@@ -10,6 +10,7 @@ import com.romy.clinica.clinica.dto.consulta.ConsultaDTOResponse;
 import com.romy.clinica.clinica.errors.error_types.DentistaNotFoundExeception;
 import com.romy.clinica.clinica.errors.error_types.PacienteNotFoundException;
 import com.romy.clinica.clinica.modules.models.entities.ConsultaEntity;
+import com.romy.clinica.clinica.modules.models.enumTypes.StatusConsulta;
 import com.romy.clinica.clinica.modules.models.repositories.ConsultaRepository;
 import com.romy.clinica.clinica.modules.models.repositories.DentistaRepository;
 import com.romy.clinica.clinica.modules.models.repositories.PacienteRepository;
@@ -56,6 +57,7 @@ public class ConsultaAgendarService {
                 .descricao(consultaAgendarDTORequest.getDescricao())
                 .dentistId(UUID.fromString(consultaAgendarDTORequest.getDentistaId()))
                 .patientId(UUID.fromString(consultaAgendarDTORequest.getPacienteId()))
+                .status(StatusConsulta.AGENDADA)
                 .build();
 
         return consulta;

@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 public class DentistaEntity {
 
     @Id
-    @NotBlank()
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
@@ -46,12 +45,6 @@ public class DentistaEntity {
 
     @NotBlank
     private String especialidade;
-
-
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = true)
-    private UserEntity user;
-
 
     @OneToMany(mappedBy = "dentista")
     private List<ConsultaEntity> consultas;

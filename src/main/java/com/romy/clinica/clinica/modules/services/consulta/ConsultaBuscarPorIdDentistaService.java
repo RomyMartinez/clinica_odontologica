@@ -21,8 +21,10 @@ public class ConsultaBuscarPorIdDentistaService {
 
     public List<ConsultaEntity> execute(String dentistId){
            var uuid = UUID.fromString(dentistId);
+           System.out.println("UUID: " + uuid);
            verificarSeDentistaExiste(uuid);
-           var consultas = consultaRepository.findAllByDentistId(uuid);
+           var consultas = this.consultaRepository.findAllByDentistId(uuid);
+           System.out.println("Consultas: " + consultas);
 
            return consultas;
     }

@@ -17,6 +17,7 @@ public class DentistaFindByIdService {
 
     public DentistaDTOResponse execute(String id){
         var dentista = findByIdinDB(id);
+        System.out.println("Dentista: " + dentista);
         var dentistaDTOResponse = formatResponse(dentista);
 
         return dentistaDTOResponse;
