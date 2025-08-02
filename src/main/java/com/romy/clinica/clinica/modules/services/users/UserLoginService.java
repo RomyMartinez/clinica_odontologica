@@ -47,7 +47,7 @@ public class UserLoginService {
     }
 
     private void verificarSenhaCorreta(UserEntity user, String password){
-        var passwordMatch = this.passwordEncoder.matches(password, user.getPassword());
+        boolean passwordMatch = this.passwordEncoder.matches(password, user.getPassword());
         if(!passwordMatch){
             throw new UserInvalidException();
         }
