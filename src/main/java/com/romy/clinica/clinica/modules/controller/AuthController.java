@@ -1,9 +1,7 @@
 package com.romy.clinica.clinica.modules.controller;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +18,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody UserLoginRequest userLoginRequest){
+        System.out.println("Login");
         try {
             var user = userLoginService.execute(userLoginRequest);
             return ResponseEntity.ok().body(user);
