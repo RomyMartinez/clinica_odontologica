@@ -1,13 +1,14 @@
 import { Hospital } from "lucide-react";
 import { Card } from "../components/ui/Card";
 import { useState } from "react";
-import { useLogin } from "../hooks/useLogin";
+import { useLogin } from "../hooks/useLogin.ts";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const { mutate: loginMutation, isPending, error } = useLogin();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +25,9 @@ export function Login() {
       }
     );
   };
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
