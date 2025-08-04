@@ -4,9 +4,12 @@ import { SidebarFooter } from "./SidebarFooter";
 import { Outlet } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import { LoadingPage } from "../../pages/LoadingPage";
+import { ErrorPage } from "../../pages/ErrorPage";
 
 export function Sidebar() {
-  const { isLoading } = useUser();
+  const { isLoading, error, isError } = useUser();
+
+  if (isError) return <ErrorPage error={error} />;
 
   if (isLoading) return <LoadingPage />;
 

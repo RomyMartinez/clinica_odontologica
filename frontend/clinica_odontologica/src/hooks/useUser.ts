@@ -14,6 +14,7 @@ export async function getUser() {
     return response.data;
   } catch (err: any) {
     if (err.response?.status === 401 || err.response?.status === 403) {
+      throw new Error("Error " + err.message);
     }
 
     throw new Error("Error " + err.message);

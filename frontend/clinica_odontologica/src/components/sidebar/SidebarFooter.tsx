@@ -5,7 +5,6 @@ import type { userInterface } from "../../components/interfaces/user";
 export function SidebarFooter() {
   const { data: user } = useUser();
   const { username, role } = user as userInterface;
-
   const formattedUsername =
     username[0].toUpperCase() + username.slice(1).toLowerCase();
 

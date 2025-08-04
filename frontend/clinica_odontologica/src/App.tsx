@@ -9,7 +9,6 @@ import { Settings } from "./pages/Settings";
 import { AuthProvider } from "./contexts/AuthContext";
 import { PrivateRoute } from "./routes/PrivateRoutes";
 import { Sidebar } from "./components/sidebar/Sidebar";
-import { ErrorPage } from "./pages/ErrorPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -21,7 +20,6 @@ function App() {
     {
       path: "/",
       element: <PrivateRoute page={<Sidebar />} />,
-      errorElement: <ErrorPage />,
       children: [
         {
           index: true,
