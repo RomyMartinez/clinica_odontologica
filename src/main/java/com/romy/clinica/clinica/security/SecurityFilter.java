@@ -25,17 +25,15 @@ public class SecurityFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
-        System.out.println("Authorization Header: " + header);
 
             if(header != null){
                 var token = this.jwtProvider.validateToken(header);
-                System.out.println("Authorization Header: " + token);
                 if(token == null){
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     return;
                 }
 
-                request.setAttribute("username", token.getSubject());
+                request.setAttribute("user_id", token.getSubject());
                 
                 var roles = token.getClaim("roles").asList(Object.class);
 
