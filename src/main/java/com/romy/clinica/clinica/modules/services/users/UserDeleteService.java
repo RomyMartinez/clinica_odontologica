@@ -3,7 +3,6 @@ package com.romy.clinica.clinica.modules.services.users;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.stereotype.Service;
 
 import com.romy.clinica.clinica.dto.htttpTypes.HttpDTOResponse;

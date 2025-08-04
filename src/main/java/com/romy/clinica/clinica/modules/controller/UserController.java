@@ -16,8 +16,10 @@ import com.romy.clinica.clinica.dto.users.UserUpdateDTORequest;
 import com.romy.clinica.clinica.modules.services.users.UserCreateService;
 import com.romy.clinica.clinica.modules.services.users.UserDeleteService;
 import com.romy.clinica.clinica.modules.services.users.UserEditarService;
+import com.romy.clinica.clinica.modules.services.users.UserFindById;
 import com.romy.clinica.clinica.modules.services.users.UserListService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
@@ -25,6 +27,9 @@ import jakarta.validation.Valid;
 public class UserController {
     @Autowired
     private UserCreateService userCreateService;
+
+    @Autowired
+    private UserFindById userFindByIdService;
 
     @Autowired
     private UserListService userListService;
@@ -45,6 +50,18 @@ public class UserController {
         }
     }
 
+
+    @GetMapping("get")
+    public ResponseEntity<Object> getUser(HttpServletRequest request){
+        var id = request.getAttribute("user_id");
+        try{
+            var userDTOResponse = this.userFindByIdService.execute(id.toString());
+            return ResponseEntity.ok().body(userDTOResponse);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping
     public ResponseEntity<Object> getUsers(){
         try{
@@ -55,6 +72,7 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable String id){

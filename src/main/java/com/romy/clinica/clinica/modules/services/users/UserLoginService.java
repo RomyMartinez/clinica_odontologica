@@ -58,7 +58,7 @@ public class UserLoginService {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
         var token = JWT.create().withIssuer("clinica")
-                .withSubject(user.getUsername())
+                .withSubject(user.getId().toString())
                 .withExpiresAt(duration)
                 .withClaim("roles", Arrays.asList(user.getRole().name().toUpperCase()))
                 .sign(algorithm);

@@ -2,7 +2,6 @@ package com.romy.clinica.clinica.modules.models.entities;
 
 import java.util.UUID;
 
-import org.hibernate.validator.constraints.Length;
 
 import com.romy.clinica.clinica.modules.models.enumTypes.Role;
 
