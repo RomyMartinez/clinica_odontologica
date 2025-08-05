@@ -1,3 +1,9 @@
+import { Header } from "../components/ui/Header";
+
 export function Settings() {
-  return <div>Settings</div>;
+  return (
+    <div>
+      <Header title="Settings" />
+    </div>
+  );
 }

@@ -1,3 +1,9 @@
+import { Header } from "../components/ui/Header";
+
 export function Pacientes() {
-  return <div>Pacientes</div>;
+  return (
+    <div>
+      <Header title="Pacientes" />
+    </div>
+  );
 }
