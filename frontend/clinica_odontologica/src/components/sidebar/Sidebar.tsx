@@ -15,7 +15,7 @@ export function Sidebar() {
 
   return (
     <div className="flex flex-row w-full h-screen">
-      <aside className="flex flex-col w-72 bg-white border-r border-gray-200">
+      <aside className="flex flex-col w-min bg-white border-r border-gray-200">
         <SidebarHeader />
         <SidebarMenu />
         <SidebarFooter />
