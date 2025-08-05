@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
+import { redirect } from "react-router-dom";
 
 interface AuthContextType {
   token: string | null;
@@ -21,6 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
+    redirect("/login");
   };
 
   return (

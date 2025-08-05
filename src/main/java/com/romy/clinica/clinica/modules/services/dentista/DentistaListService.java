@@ -28,6 +28,7 @@ public class DentistaListService {
     private List<DentistaDTOResponse> formatDentistas(List<DentistaEntity> dentistas){
         var dentistasDTOResponse = dentistas.stream()
                 .map(dentista -> DentistaDTOResponse.builder()
+                        .id(dentista.getId())
                         .nome(dentista.getNome())
                         .cpf(dentista.getCpf())
                         .especialidade(dentista.getEspecialidade())

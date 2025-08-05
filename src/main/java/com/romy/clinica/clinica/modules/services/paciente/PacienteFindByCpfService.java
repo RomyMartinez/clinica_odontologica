@@ -30,6 +30,8 @@ public class PacienteFindByCpfService {
 
     private PacienteDTOResponse formatResponse(PacienteEntity paciente){
         var pacienteDTOResponse = PacienteDTOResponse.builder()
+                .id(paciente.getId())
+                .cpf(paciente.getCpf())
                 .nome(paciente.getNome())
                 .email(paciente.getEmail())
                 .telefone(paciente.getTelefone())

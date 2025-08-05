@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.romy.clinica.clinica.dto.consulta.ConsultaDTORequest;
-import com.romy.clinica.clinica.dto.consulta.ConsultaDTOResponse;
 import com.romy.clinica.clinica.errors.error_types.DentistaNotFoundExeception;
 import com.romy.clinica.clinica.errors.error_types.PacienteNotFoundException;
 import com.romy.clinica.clinica.modules.models.entities.ConsultaEntity;
@@ -26,14 +25,13 @@ public class ConsultaAgendarService {
     @Autowired
     private PacienteRepository pacienteRepository;
 
-    public ConsultaDTOResponse execute(ConsultaDTORequest consultaAgendarDTORequest){
+    public ConsultaEntity execute(ConsultaDTORequest consultaAgendarDTORequest){
         verificarSeDentistaExiste(consultaAgendarDTORequest.getDentistaId());
         verificarSePacienteExiste(consultaAgendarDTORequest.getPacienteId());
         var consulta = criarConsulta(consultaAgendarDTORequest);
-        salvarConsulta(consulta);
-        var consultaDTOResponse = formattedResponse(consulta);
+        var consultaSaved = salvarConsulta(consulta);
 
-        return consultaDTOResponse;
+        return consultaSaved;
         
     }
 
@@ -63,16 +61,9 @@ public class ConsultaAgendarService {
         return consulta;
     }
 
-    private void salvarConsulta(ConsultaEntity consulta){
-        this.consultaRepository.save(consulta);
+    private ConsultaEntity salvarConsulta(ConsultaEntity consulta){
+        return this.consultaRepository.save(consulta);
     }
 
-    private ConsultaDTOResponse formattedResponse(ConsultaEntity consulta){
-        var consultaDTOResponse = ConsultaDTOResponse.builder()
-                .dataHora(consulta.getDataHora())
-                .descricao(consulta.getDescricao())
-                .build();
-
-        return consultaDTOResponse;
-    }
+   
 }

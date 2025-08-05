@@ -34,6 +34,7 @@ public class DentistaFindByIdService {
 
     private DentistaDTOResponse formatResponse(DentistaEntity dentista){
         var dentistaDTOResponse = DentistaDTOResponse.builder()
+                .id(dentista.getId())
                 .nome(dentista.getNome())
                 .cpf(dentista.getCpf())
                 .especialidade(dentista.getEspecialidade())

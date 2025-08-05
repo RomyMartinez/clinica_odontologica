@@ -48,6 +48,7 @@ public class DentistaCreateService {
 
     private DentistaDTOResponse formattedResponse(DentistaEntity dentistaEntity){
         var dentistaDTOResponse = DentistaDTOResponse.builder()
+                .id(dentistaEntity.getId())
                 .nome(dentistaEntity.getNome())
                 .cpf(dentistaEntity.getCpf())
                 .especialidade(dentistaEntity.getEspecialidade())

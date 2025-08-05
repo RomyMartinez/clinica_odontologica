@@ -23,7 +23,7 @@ public class PacienteCreateService{
     }
 
     private void validateIfPacienteAlreadyExists(String cpf){
-        this.pacienteRepository.findByCpf(cpf).ifPresent(
+         this.pacienteRepository.findByCpf(cpf).ifPresent(
             paciente -> {
                 throw new PacienteFoundException();
             }
@@ -48,6 +48,8 @@ public class PacienteCreateService{
 
     private PacienteDTOResponse formattedResponse(PacienteEntity pacienteEntity){
         var pacienteDTOResponse = PacienteDTOResponse.builder()
+                .id(pacienteEntity.getId())
+                .cpf(pacienteEntity.getCpf())
                 .nome(pacienteEntity.getNome())
                 .email(pacienteEntity.getEmail())
                 .telefone(pacienteEntity.getTelefone())

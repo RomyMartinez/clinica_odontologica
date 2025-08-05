@@ -3,13 +3,13 @@ package com.romy.clinica.clinica.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.http.HttpMethod;
 
 
 @Configuration
@@ -26,10 +26,10 @@ public class SecurityConfig {
             auth
             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .requestMatchers("/auth/**").permitAll()
-            .requestMatchers("/users/**").hasAnyRole("ADMIN", "SECRETARIA", "DENTISTA")
-            .requestMatchers("/paciente/**").hasAnyRole("DENTISTA", "SECRETARIA")
+            .requestMatchers("/users/**").permitAll()
+            .requestMatchers("/paciente/**").hasAnyRole("ADMIN","DENTISTA", "SECRETARIA")
             .requestMatchers("/dentista/**").hasAnyRole("DENTISTA", "ADMIN")
-            .requestMatchers("/consulta/**").hasAnyRole("DENTISTA", "SECRETARIA");
+            .requestMatchers("/consulta/**").hasAnyRole("ADMIN","DENTISTA", "SECRETARIA");
             auth.anyRequest().authenticated();
         })
         .addFilterBefore(securityFilter, BasicAuthenticationFilter.class);

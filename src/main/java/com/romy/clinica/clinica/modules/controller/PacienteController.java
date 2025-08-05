@@ -16,6 +16,7 @@ import com.romy.clinica.clinica.modules.services.paciente.PacienteCreateService;
 import com.romy.clinica.clinica.modules.services.paciente.PacienteDeleteService;
 import com.romy.clinica.clinica.modules.services.paciente.PacienteFindByCpfService;
 import com.romy.clinica.clinica.modules.services.paciente.PacienteFindByNameService;
+import com.romy.clinica.clinica.modules.services.paciente.PacienteListService;
 import com.romy.clinica.clinica.modules.services.paciente.PacienteUpdateService;
 
 import jakarta.validation.Valid;
@@ -28,6 +29,9 @@ public class PacienteController {
 
     @Autowired
     private PacienteFindByNameService pacienteFindByNameService;
+
+    @Autowired
+    private PacienteListService pacienteListService;
 
     @Autowired
     private PacienteFindByCpfService pacienteFindByCpfService;
@@ -49,7 +53,17 @@ public class PacienteController {
         }
     }
 
-    @GetMapping("/find")
+    @GetMapping("/findAll")
+    public ResponseEntity<Object> findAllPacientes() {
+        try {
+            var pacienteDTOResponses = this.pacienteListService.execute();
+            return ResponseEntity.ok().body(pacienteDTOResponses);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/findByName")
     public ResponseEntity<Object> findPaciente(@RequestParam String nome) {
         try{
             var pacienteDTOResponses = this.pacienteFindByNameService.execute(nome);
@@ -61,7 +75,7 @@ public class PacienteController {
     }
 
 
-    @GetMapping("/{cpf}")
+    @GetMapping("/findByCpf/{cpf}")
     public ResponseEntity<Object> findPacienteById(@RequestParam String cpf) {
         try {
             var pacienteDTOResponse = this.pacienteFindByCpfService.execute(cpf);

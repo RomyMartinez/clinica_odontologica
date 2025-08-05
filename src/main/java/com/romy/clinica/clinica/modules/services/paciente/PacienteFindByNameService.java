@@ -28,6 +28,8 @@ public class PacienteFindByNameService {
     private List<PacienteDTOResponse> formatResponse(List<PacienteEntity> pacientes){
         var pacienteDTOResponses = pacientes.stream()
                 .map(pacienteEntity -> PacienteDTOResponse.builder()
+                        .id(pacienteEntity.getId())
+                        .cpf(pacienteEntity.getCpf())
                         .nome(pacienteEntity.getNome())
                         .email(pacienteEntity.getEmail())
                         .telefone(pacienteEntity.getTelefone())
