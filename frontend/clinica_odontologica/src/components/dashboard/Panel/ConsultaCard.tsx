@@ -1,4 +1,4 @@
-import type { Consulta } from "../../interfaces/consulta";
+import type { Consulta } from "../../../interfaces/consulta";
 import { Clock } from "lucide-react";
 import { dataFormattedWithHour } from "../../../utils/dataFormattedWithHour";
 

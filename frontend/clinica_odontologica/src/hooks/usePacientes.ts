@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../services/api";
-import type { Paciente as pacienteInterface } from "../components/interfaces/paciente";
+import type { Paciente as pacienteInterface } from "../interfaces/paciente";
 
 export function usePacients() {
   return useQuery({

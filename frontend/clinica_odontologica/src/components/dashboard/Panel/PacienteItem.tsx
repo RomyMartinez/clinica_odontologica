@@ -1,4 +1,4 @@
-import type { Consulta } from "../../interfaces/consulta";
+import type { Consulta } from "../../../interfaces/consulta";
 import { dataFormatted } from "../../../utils/dataFormatted";
 import { NavLink } from "react-router-dom";
 
