@@ -7,7 +7,7 @@ export function Consultas() {
       <Header title="Consultas" />
       <AddBar
         title="Maneje suas consultas"
-        buttonLabel="Adicionar Consulta"
+        buttonLabel="Nova Consulta"
         onClick={() => {}}
       />
     </div>
