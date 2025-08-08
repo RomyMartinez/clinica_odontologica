@@ -17,8 +17,8 @@ public class DentistaDTORequest {
     @Pattern(regexp = "^[0-9]{11}$", message = "CPF deve conter 11 dígitos")
     private String cpf;
 
-    @NotBlank()
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Nome deve conter letras")
+    @NotBlank() 
+    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "Nome deve conter letras e espaços")
     private String nome;
 
     @NotBlank()

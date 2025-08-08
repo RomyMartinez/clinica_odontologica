@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PacienteDTORequest {
     @NotBlank()
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Nome deve conter letras")
+    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "Nome deve conter letras e espaços")
     @Length(min = 3, max = 50)
     private String nome;
 
