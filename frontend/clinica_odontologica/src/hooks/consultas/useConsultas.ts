@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "../services/api";
-import type { Consulta as consultaInterface } from "../interfaces/consulta";
+import api from "../../services/api";
+import type { Consulta as consultaInterface } from "../../interfaces/consulta";
 
 export function useConsultas() {
   return useQuery({

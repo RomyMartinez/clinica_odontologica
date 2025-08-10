@@ -12,3 +12,10 @@ export interface Consulta {
   dentista: Dentista;
   createdAt: string;
 }
+
+export interface CreateConsulta {
+  dataHora: string;
+  descricao: string;
+  pacienteId: string;
+  dentistaId: string;
+}
