@@ -1,4 +1,4 @@
-import { useConsultas } from "../../../hooks/useConsultas";
+import { useConsultas } from "../../../hooks/consultas/useConsultas";
 import { Card } from "../../ui/Card";
 import { NavLink } from "react-router-dom";
 import { PacienteItem } from "./PacienteItem";
