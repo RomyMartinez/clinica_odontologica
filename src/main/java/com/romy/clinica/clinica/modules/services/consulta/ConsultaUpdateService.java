@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.romy.clinica.clinica.dto.consulta.ConsultaDTOResponse;
 import com.romy.clinica.clinica.dto.consulta.ConsultaUpdateDTORequest;
 import com.romy.clinica.clinica.modules.models.entities.ConsultaEntity;
+import com.romy.clinica.clinica.modules.models.enumTypes.StatusConsulta;
 import com.romy.clinica.clinica.modules.models.repositories.ConsultaRepository;
 
 @Service
@@ -19,6 +20,7 @@ public class ConsultaUpdateService {
         var consulta = findInDB(id);
         consulta.setDataHora(consultaUpdateDTORequest.getDataHora());
         consulta.setDescricao(consultaUpdateDTORequest.getDescricao());
+        consulta.setStatus(StatusConsulta.REAGENDADA);
         var consultaDTOResponse = formattedResponse(consulta);
         this.consultaRepository.save(consulta);
 
