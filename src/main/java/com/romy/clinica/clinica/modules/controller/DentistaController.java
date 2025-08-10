@@ -55,7 +55,7 @@ public class DentistaController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<Object> dentistaFind(@RequestParam String nome){
+    public ResponseEntity<Object> dentistaFind(){
         try {
             var dentistaDTOResponses = this.dentistaListService.execute();
             return ResponseEntity.ok().body(dentistaDTOResponses);
