@@ -28,7 +28,7 @@ public class SecurityConfig {
             .requestMatchers("/auth/**").permitAll()
             .requestMatchers("/users/**").permitAll()
             .requestMatchers("/paciente/**").hasAnyRole("ADMIN","DENTISTA", "SECRETARIA")
-            .requestMatchers("/dentista/**").hasAnyRole("DENTISTA", "ADMIN")
+            .requestMatchers("/dentista/**").hasAnyRole("ADMIN","DENTISTA")
             .requestMatchers("/consulta/**").hasAnyRole("ADMIN","DENTISTA", "SECRETARIA");
             auth.anyRequest().authenticated();
         })
