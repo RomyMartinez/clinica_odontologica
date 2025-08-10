@@ -1,6 +1,7 @@
 import type { Consulta } from "../../../interfaces/consulta";
 import { Clock } from "lucide-react";
 import { dataFormattedWithHour } from "../../../utils/dataFormattedWithHour";
+import { getStatusColor } from "../../../utils/StatusColor";
 
 export function ConsultaCard({
   id,
@@ -10,13 +11,7 @@ export function ConsultaCard({
   paciente,
   dentista,
 }: Consulta) {
-  const statusColor = {
-    AGENDADA: "bg-blue-100 text-blue-800",
-    CONCLUIDA: "bg-green-100 text-green-800",
-    CANCELADA: "bg-red-100 text-red-800",
-    REAGENDADA: "bg-yellow-100 text-yellow-800",
-  };
-
+  const statusColor = getStatusColor(status);
   const dataHoraFormatted = dataFormattedWithHour(new Date(dataHora));
 
   return (
@@ -31,7 +26,7 @@ export function ConsultaCard({
         </div>
         <div className="flex flex-row items-center gap-2 mr-2">
           <p
-            className={`text-xs text-gray-500 rounded-full px-2 py-1 ${statusColor[status]}`}
+            className={`text-xs text-gray-500 rounded-full px-2 py-1 ${statusColor}`}
           >
             {status}
           </p>

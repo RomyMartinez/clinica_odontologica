@@ -7,36 +7,31 @@ import {
   XCircle,
   MapPin,
   Eye,
+  Trash2,
 } from "lucide-react";
+import type { Consulta } from "../../interfaces/consulta";
+import { getStatusColor } from "../../utils/StatusColor";
+import { ButtonCard } from "../ui/ButtonCard";
 
-interface CardConsultaProps {
-  paciente: string;
-  dentista: string;
-  data: string;
-  status: string;
+interface CardConsultaProps extends Consulta {
+  onOpenDetails: (id: string) => void;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
+  onCancel?: (id: string) => void;
+  onConcluir?: (id: string) => void;
 }
 
 export function CardConsulta({
+  id,
   paciente,
   dentista,
-  data,
+  dataHora,
   status,
+  onOpenDetails,
+  onDelete,
+  onCancel,
+  onConcluir,
 }: CardConsultaProps) {
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "AGENDADA":
-        return "bg-amber-500";
-      case "CONCLUIDA":
-        return "bg-emerald-500";
-      case "CANCELADA":
-        return "bg-rose-500";
-      case "REAGENDADA":
-        return "bg-orange-500";
-      default:
-        return "bg-slate-500";
-    }
-  };
-
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "AGENDADA":
@@ -63,7 +58,7 @@ export function CardConsulta({
     };
   };
 
-  const { date, time } = formatDate(data);
+  const { date, time } = formatDate(dataHora);
 
   return (
     <div className="group bg-white border border-slate-200 rounded-xl hover:border-slate-300 transition-all duration-200 hover:shadow-md">
@@ -77,12 +72,14 @@ export function CardConsulta({
               {status}
             </span>
           </div>
-          <div
-            className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium text-white ${getStatusColor(
-              status
-            )}`}
-          >
-            {getStatusIcon(status)}
+          <div className="flex items-center gap-2">
+            <div
+              className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium text-white ${getStatusColor(
+                status
+              )}`}
+            >
+              {getStatusIcon(status)}
+            </div>
           </div>
         </div>
 
@@ -92,7 +89,7 @@ export function CardConsulta({
           </div>
           <div className="flex-1">
             <h3 className="font-semibold text-slate-900 text-sm leading-tight">
-              {paciente}
+              {paciente.nome}
             </h3>
             <p className="text-xs text-slate-500">Paciente</p>
           </div>
@@ -106,7 +103,9 @@ export function CardConsulta({
           </div>
           <div className="flex-1">
             <p className="text-xs font-medium text-slate-500">Dentista</p>
-            <p className="text-sm font-semibold text-slate-900">{dentista}</p>
+            <p className="text-sm font-semibold text-slate-900">
+              {dentista.nome}
+            </p>
           </div>
         </div>
 
@@ -129,11 +128,32 @@ export function CardConsulta({
         </div>
       </div>
 
-      <div className="px-4 pb-4">
-        <button className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-colors">
-          <Eye size={16} className="text-slate-500" />
-          Ver Detalhes
-        </button>
+      <div className="grid grid-cols-2 gap-2 px-4 pb-4">
+        <ButtonCard
+          icon={<Eye size={16} />}
+          className="bg-slate-100 hover:bg-slate-200 text-slate-700"
+          label="Detalhes"
+          onClick={() => onOpenDetails(id)}
+        />
+        <ButtonCard
+          icon={<XCircle size={16} />}
+          className="bg-slate-100 hover:bg-slate-200 text-slate-700"
+          label="Cancelar"
+          onClick={() => onCancel?.(id)}
+        />
+        <ButtonCard
+          icon={<CheckCircle size={16} />}
+          className="bg-blue-100 hover:bg-blue-200 text-blue-700"
+          label="Concluir"
+          onClick={() => onConcluir?.(id)}
+        />
+
+        <ButtonCard
+          icon={<Trash2 size={16} />}
+          className="bg-red-100 hover:bg-red-200 text-red-700"
+          label="Excluir"
+          onClick={() => onDelete?.(id)}
+        />
       </div>
     </div>
   );
