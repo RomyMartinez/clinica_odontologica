@@ -1,5 +1,7 @@
 package com.romy.clinica.clinica.dto.paciente;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -17,4 +19,6 @@ public class PacienteDTOResponse {
     private String nome;
     private  String email;
     private  String telefone;
+    private  LocalDate dataNascimento;
+    private  LocalDateTime createdAt;
 }

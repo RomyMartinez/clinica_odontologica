@@ -35,6 +35,8 @@ public class PacienteFindByCpfService {
                 .nome(paciente.getNome())
                 .email(paciente.getEmail())
                 .telefone(paciente.getTelefone())
+                .dataNascimento(paciente.getDataNascimento())
+                .createdAt(paciente.getCreatedAt())
                 .build();
 
         return pacienteDTOResponse;

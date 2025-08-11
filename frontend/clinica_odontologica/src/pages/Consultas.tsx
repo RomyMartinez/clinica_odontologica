@@ -7,7 +7,6 @@ import { ErrorPage } from "./ErrorPage";
 import { useState } from "react";
 import { ConsultaForm } from "../components/Consulta.tsx/ConsultaForm";
 import { ConsultaDetails } from "../components/Consulta.tsx/ConsultaDetails";
-import { NotFoundList } from "../components/ui/NotFoundList";
 import { useCancelar } from "../hooks/consultas/useCancelar";
 import { useConcluir } from "../hooks/consultas/useConcluir";
 import { useDeleteConsulta } from "../hooks/consultas/useDeleteConsulta";
@@ -69,17 +68,13 @@ export function Consultas() {
           onClick={handleOpen}
         />
         <div className="flex-1 min-h-0">
-          {consultas.length > 0 ? (
-            <GridConsulta
-              consultas={consultas}
-              onOpenDetails={handleOpenDetails}
-              onCancel={handleCancel}
-              onConcluir={handleConcluir}
-              onDelete={handleDelete}
-            />
-          ) : (
-            <NotFoundList title="Nenhuma consulta encontrada" />
-          )}
+          <GridConsulta
+            consultas={consultas}
+            onOpenDetails={handleOpenDetails}
+            onCancel={handleCancel}
+            onConcluir={handleConcluir}
+            onDelete={handleDelete}
+          />
         </div>
       </div>
       <ConsultaForm isOpen={open} onClose={() => setOpen(false)} />

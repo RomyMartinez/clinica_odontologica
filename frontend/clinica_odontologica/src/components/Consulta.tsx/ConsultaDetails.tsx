@@ -36,7 +36,6 @@ export function ConsultaDetails({ id, isOpen, onClose }: ConsultaDetailsProps) {
       setValidationError("Data e hora e descrição são obrigatórios");
       return;
     }
-    console.log(dataHora, descricao);
     setValidationError("");
     editConsulta({
       id,

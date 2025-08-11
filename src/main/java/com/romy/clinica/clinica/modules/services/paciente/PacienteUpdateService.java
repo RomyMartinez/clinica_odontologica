@@ -51,6 +51,7 @@ public class PacienteUpdateService {
                 .nome(pacienteEntity.getNome())
                 .email(pacienteEntity.getEmail())
                 .telefone(pacienteEntity.getTelefone())
+                .dataNascimento(pacienteEntity.getDataNascimento())
                 .build();
 
         return pacienteDTOResponse;

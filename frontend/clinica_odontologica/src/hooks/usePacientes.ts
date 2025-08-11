@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "../services/api";
 import type { Paciente as pacienteInterface } from "../interfaces/paciente";
 
-export function usePacients() {
+export function usePacientes() {
   return useQuery({
     queryKey: ["pacientes"],
     queryFn: getPacientes,

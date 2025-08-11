@@ -1,11 +1,11 @@
 import { CardBoard } from "./CardBoard";
 import { Users, Calendar, CheckCircle } from "lucide-react";
 import { useConsultas } from "../../../hooks/consultas/useConsultas";
-import { usePacients } from "../../../hooks/usePacientes";
+import { usePacientes } from "../../../hooks/usePacientes";
 
 export function Board() {
   const { data: consultasList, isLoading } = useConsultas();
-  const { data: pacientesList } = usePacients();
+  const { data: pacientesList } = usePacientes();
 
   const totalPacientes = pacientesList?.length ?? 0;
   const totalConsultas = consultasList?.length ?? 0;

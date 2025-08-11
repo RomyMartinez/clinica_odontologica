@@ -2,6 +2,9 @@ import { CardConsulta } from "./CardConsulta";
 import type { Consulta } from "../../interfaces/consulta";
 import { SearchBar } from "../ui/SearchBar";
 import { useState, useMemo } from "react";
+import { Grid } from "../ui/Grid";
+import { NotFoundList } from "../ui/NotFoundList";
+import { Calendar } from "lucide-react";
 
 interface GridConsultaProps {
   consultas: Consulta[];
@@ -42,7 +45,7 @@ export function GridConsulta({
       </div>
 
       <div className="flex-1 overflow-y-auto px-6 pb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <Grid>
           {consultasFiltradas.map((consulta) => (
             <CardConsulta
               key={consulta.id}
@@ -53,7 +56,14 @@ export function GridConsulta({
               onDelete={onDelete}
             />
           ))}
-        </div>
+        </Grid>
+        {consultasFiltradas.length === 0 && (
+          <NotFoundList
+            title="Nenhuma consulta encontrada"
+            icon={<Calendar size={48} />}
+            classname="bg-blue-100 text-blue-500"
+          />
+        )}
       </div>
     </div>
   );

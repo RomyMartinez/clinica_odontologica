@@ -1,5 +1,7 @@
 package com.romy.clinica.clinica.modules.services.paciente;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +14,23 @@ public class PacienteDeleteService {
     @Autowired
     private PacienteRepository pacienteRepository;
 
-    public HttpDTOResponse execute(String cpf){
-        validateIfPacienteExists(cpf);
-        deletePacienteInDB(cpf);
+    public HttpDTOResponse execute(String id){
+        validateIfPacienteExists(id);
+        deletePacienteInDB(id);
         var httpDTOResponse = formattedResponse();
         return httpDTOResponse;
     }
 
-    private void validateIfPacienteExists(String cpf){
-        if(this.pacienteRepository.findByCpf(cpf).isEmpty()){
+    private void validateIfPacienteExists(String id){
+        UUID uuid = UUID.fromString(id);
+        if(this.pacienteRepository.findById(uuid).isEmpty()){
             throw new PacienteNotFoundException();
         }
     }
 
-    private void deletePacienteInDB(String cpf){
-        this.pacienteRepository.deleteByCpf(cpf);
+    private void deletePacienteInDB(String id){
+        UUID uuid = UUID.fromString(id);
+        this.pacienteRepository.deleteById(uuid);
     }
 
     private HttpDTOResponse formattedResponse(){

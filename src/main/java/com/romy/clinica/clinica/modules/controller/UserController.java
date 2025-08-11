@@ -51,7 +51,7 @@ public class UserController {
     }
 
 
-    @GetMapping("get")
+    @GetMapping("get-user")
     public ResponseEntity<Object> getUser(HttpServletRequest request){
         var id = request.getAttribute("user_id");
         try{

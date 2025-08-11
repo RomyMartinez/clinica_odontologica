@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.romy.clinica.clinica.modules.models.enumTypes.StatusConsulta;
 
@@ -48,10 +50,12 @@ public class ConsultaEntity {
 
     @ManyToOne
     @JoinColumn(name = "patient_id", insertable = false, updatable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private PacienteEntity paciente;
 
     @ManyToOne
     @JoinColumn(name = "dentist_id", insertable = false, updatable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private DentistaEntity dentista;
 
     @CreationTimestamp

@@ -1,6 +1,6 @@
 import { useCreateConsulta } from "../../hooks/consultas/useCreateConsulta";
 import type { CreateConsulta } from "../../interfaces/consulta";
-import { usePacients } from "../../hooks/usePacientes";
+import { usePacientes } from "../../hooks/usePacientes";
 import { useDentista } from "../../hooks/consultas/useDentista";
 import { FormField } from "../ui/FormField";
 import type { Dentista } from "../../interfaces/dentista";
@@ -23,7 +23,7 @@ export function ConsultaForm({ isOpen, onClose }: ConsultaFormProps) {
     isPending,
   } = useCreateConsulta();
   const { data: dentistas } = useDentista();
-  const { data: pacientes } = usePacients();
+  const { data: pacientes } = usePacientes();
 
   const [validationError, setValidationError] = useState("");
 

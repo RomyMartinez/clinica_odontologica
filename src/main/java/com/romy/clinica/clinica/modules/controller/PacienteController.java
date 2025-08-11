@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,8 +76,8 @@ public class PacienteController {
     }
 
 
-    @GetMapping("/findByCpf/{cpf}")
-    public ResponseEntity<Object> findPacienteById(@RequestParam String cpf) {
+    @GetMapping("/{cpf}")
+    public ResponseEntity<Object> findPacienteById(@PathVariable String cpf) {
         try {
             var pacienteDTOResponse = this.pacienteFindByCpfService.execute(cpf);
             return ResponseEntity.ok().body(pacienteDTOResponse);
@@ -85,20 +86,20 @@ public class PacienteController {
         }
     }
 
-    @PatchMapping("/update")
-    public ResponseEntity<Object> updatePaciente(@Valid @RequestBody PacienteDTORequest pacienteDTORequest, @RequestParam String id) {
+    @PatchMapping("/update/{cpf}")
+    public ResponseEntity<Object> updatePaciente(@Valid @RequestBody PacienteDTORequest pacienteDTORequest, @PathVariable String cpf) {
         try {
-            var pacienteDTOResponse = this.pacienteUpdateService.execute(pacienteDTORequest, id);
+            var pacienteDTOResponse = this.pacienteUpdateService.execute(pacienteDTORequest, cpf);
             return ResponseEntity.ok().body(pacienteDTOResponse);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Object> deletePaciente(@RequestParam String cpf) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletePaciente(@PathVariable String id) {
         try {
-            var pacienteDTOResponse = this.pacienteDeleteService.execute(cpf);
+            var pacienteDTOResponse = this.pacienteDeleteService.execute(id);
             return ResponseEntity.ok().body(pacienteDTOResponse);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
