@@ -15,5 +15,8 @@ public class DentistaDTOResponse {
     private UUID id;
     private String nome;
     private String cpf;
+    private Boolean ativo;
+    private String cro;
+    private String email;
     private String especialidade;
 }

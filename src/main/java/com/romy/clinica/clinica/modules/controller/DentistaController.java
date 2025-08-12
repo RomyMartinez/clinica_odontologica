@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.romy.clinica.clinica.dto.dentista.DentistaDTORequest;
@@ -19,7 +18,7 @@ import com.romy.clinica.clinica.modules.services.dentista.DentistaDeleteService;
 import com.romy.clinica.clinica.modules.services.dentista.DentistaFindByIdService;
 import com.romy.clinica.clinica.modules.services.dentista.DentistaListService;
 import com.romy.clinica.clinica.modules.services.dentista.DentistaUpdateService;
-import com.romy.clinica.clinica.modules.services.dentista.DentitaDesactivateService;
+import com.romy.clinica.clinica.modules.services.dentista.DentitaDesactivateOrActivateService;
 
 import jakarta.validation.Valid;
 
@@ -39,7 +38,7 @@ public class DentistaController {
     private DentistaUpdateService dentistaUpdateService;
 
     @Autowired
-    private DentitaDesactivateService dentistaDesactivateService;
+    private DentitaDesactivateOrActivateService dentistaDesactivateOrActivateService;
 
     @Autowired
     private DentistaDeleteService dentistaDeleteService;
@@ -74,8 +73,8 @@ public class DentistaController {
         }
     }
 
-    @PatchMapping("/update")
-    public ResponseEntity<Object> dentistaUpdate(@Valid @RequestBody DentistaUpdateDTORequest dentistaUpdateDTORequest, @RequestParam String id){
+    @PatchMapping("/{id}")
+    public ResponseEntity<Object> dentistaUpdate(@Valid @RequestBody DentistaUpdateDTORequest dentistaUpdateDTORequest, @PathVariable String id){
         try {
             var dentistaDTOResponse = this.dentistaUpdateService.execute(dentistaUpdateDTORequest, id);
             return ResponseEntity.ok().body(dentistaDTOResponse);
@@ -84,20 +83,20 @@ public class DentistaController {
         }
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Object> dentistaDelete(@RequestParam String cpf){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> dentistaDelete(@PathVariable String id){
         try {
-            var dentistaDTOResponse = this.dentistaDeleteService.execute(cpf);
+            var dentistaDTOResponse = this.dentistaDeleteService.execute(id);
             return ResponseEntity.ok().body(dentistaDTOResponse);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @PatchMapping("/desactivate")
-    public ResponseEntity<Object> dentistaDesactivate(@RequestParam String cpf){
+    @PatchMapping("/alterar-status/{id}")
+    public ResponseEntity<Object> dentistaAlterarStatus(@PathVariable String id){
         try {
-            var dentistaDTOResponse = this.dentistaDesactivateService.execute(cpf);
+            var dentistaDTOResponse = this.dentistaDesactivateOrActivateService.execute(id);
             return ResponseEntity.ok().body(dentistaDTOResponse);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

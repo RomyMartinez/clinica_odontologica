@@ -37,6 +37,9 @@ public class DentistaFindByIdService {
                 .id(dentista.getId())
                 .nome(dentista.getNome())
                 .cpf(dentista.getCpf())
+                .email(dentista.getEmail())
+                .ativo(dentista.getAtivo())
+                .cro(dentista.getCro())
                 .especialidade(dentista.getEspecialidade())
                 .build();
 

@@ -41,17 +41,19 @@ public class DentistaUpdateService {
         
         if(!cpf.isEmpty()){
             this.dentistaRepository.findByCpf(cpf).ifPresent(dentista -> {
-                throw new DentistaFoundException();
+                if(!dentista.getCpf().equals(cpf)){
+                    throw new DentistaFoundException();
+                }
             });
         }
     }
 
     private DentistaEntity atualizarDentista(DentistaEntity dentista, DentistaUpdateDTORequest dentistaUpdateDTORequest){
-        if(!dentistaUpdateDTORequest.getNome().isEmpty()) dentista.setNome(dentista.getNome());
-        if(!dentistaUpdateDTORequest.getCpf().isEmpty()) dentista.setCpf(dentista.getCpf());
-        if(!dentistaUpdateDTORequest.getEmail().isEmpty()) dentista.setEmail(dentista.getEmail());
-        if(!dentistaUpdateDTORequest.getCro().isEmpty()) dentista.setCro(dentista.getCro());
-        if(!dentistaUpdateDTORequest.getEspecialidade().isEmpty()) dentista.setEspecialidade(dentista.getEspecialidade());
+        dentista.setNome(dentistaUpdateDTORequest.getNome());
+        dentista.setCpf(dentistaUpdateDTORequest.getCpf());
+        dentista.setEmail(dentistaUpdateDTORequest.getEmail());
+        dentista.setCro(dentistaUpdateDTORequest.getCro());
+        dentista.setEspecialidade(dentistaUpdateDTORequest.getEspecialidade());
         var dentistaAtualizado = dentista;
 
         return dentistaAtualizado;

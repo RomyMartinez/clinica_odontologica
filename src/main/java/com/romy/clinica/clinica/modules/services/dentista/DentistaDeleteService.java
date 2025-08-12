@@ -1,5 +1,7 @@
 package com.romy.clinica.clinica.modules.services.dentista;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,8 @@ public class DentistaDeleteService {
     @Autowired
     private DentistaRepository dentistaRepository;
 
-    public HttpDTOResponse execute(String cpf){
-        var dentista = findInDB(cpf);
+    public HttpDTOResponse execute(String id){
+        var dentista = findInDB(id);
         deleteDentista(dentista);
 
         var httpDTOResponse = formattedResponse();
@@ -22,8 +24,8 @@ public class DentistaDeleteService {
         return httpDTOResponse;
     }
 
-    private DentistaEntity findInDB(String cpf){
-        var dentista = this.dentistaRepository.findByCpf(cpf);
+    private DentistaEntity findInDB(String id){
+        var dentista = this.dentistaRepository.findById(UUID.fromString(id));
         if(dentista.isEmpty()){
             throw new DentistaNotFoundExeception();
         }
