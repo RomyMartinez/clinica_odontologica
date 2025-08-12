@@ -18,10 +18,9 @@ async function createUser(user: createUserInterface) {
     const response = await api.post("/users/", user);
     return response.data;
   } catch (error: any) {
-    if (error.response?.status === 401 || error.response?.status === 403) {
-      throw new Error("Error " + error.response.data);
+    if (error.response?.status === 403) {
+      throw new Error("Error: Você não tem permissão para criar usuários");
     }
-
     if (error.response.data[0].message) {
       throw new Error("Error " + error.response.data[0].message);
     } else {

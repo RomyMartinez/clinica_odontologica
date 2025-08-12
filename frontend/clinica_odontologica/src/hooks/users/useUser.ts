@@ -10,7 +10,7 @@ export function useUser() {
 
 export async function getUser() {
   try {
-    const response = await api.get("users/get-user");
+    const response = await api.get("auth/get-user");
     return response.data;
   } catch (err: any) {
     if (err.response?.status === 401 || err.response?.status === 403) {
