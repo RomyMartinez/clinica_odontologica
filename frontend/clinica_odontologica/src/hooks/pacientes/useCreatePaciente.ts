@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import type { CreatePaciente } from "../interfaces/createPaciente";
-import api from "../services/api";
+import type { CreatePaciente } from "../../interfaces/createPaciente";
+import api from "../../services/api";
 import { useQueryClient } from "@tanstack/react-query";
 
 export const useCreatePaciente = () => {
