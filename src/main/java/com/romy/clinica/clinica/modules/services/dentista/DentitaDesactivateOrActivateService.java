@@ -11,16 +11,16 @@ import com.romy.clinica.clinica.modules.models.entities.DentistaEntity;
 import com.romy.clinica.clinica.modules.models.repositories.DentistaRepository;
 
 @Service
-public class DentitaDesactivateService {
+public class DentitaDesactivateOrActivateService {
 
     @Autowired
     private DentistaRepository dentistaRepository;
 
     public HttpDTOResponse execute(String id){
         var dentista = findInDB(id);
-        var dentistaDesativado = desativarDentista(dentista);
+        var dentistaDesativado = ativarOuDesativarDentista(dentista);
         salvarDentista(dentistaDesativado);
-        var httpDTOResponse = formatResponse();
+        var httpDTOResponse = formatResponse(dentistaDesativado);
         
         return httpDTOResponse;
     }
@@ -35,8 +35,8 @@ public class DentitaDesactivateService {
         return dentista.get();
     }
 
-    private DentistaEntity desativarDentista(DentistaEntity dentista){
-        dentista.setAtivo(false);
+    private DentistaEntity ativarOuDesativarDentista(DentistaEntity dentista){
+        dentista.setAtivo(!dentista.getAtivo());
 
         return dentista;
     }
@@ -45,9 +45,9 @@ public class DentitaDesactivateService {
         this.dentistaRepository.save(dentistaDesativado);
     }
 
-    private HttpDTOResponse formatResponse(){
+    private HttpDTOResponse formatResponse(DentistaEntity dentista){
         var httpDTOResponse = HttpDTOResponse.builder()
-                .message("Dentista desativado com sucesso")
+                .message("Dentista " + (dentista.getAtivo() ? "ativado" : "desativado") + " com sucesso")
                 .build();
 
         return httpDTOResponse;
