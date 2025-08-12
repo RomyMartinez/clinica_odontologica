@@ -11,7 +11,7 @@ import com.romy.clinica.clinica.modules.models.entities.UserEntity;
 import com.romy.clinica.clinica.modules.models.repositories.UsersRepository;
 
 @Service
-public class UserFindById {
+public class UserFindByIdService {
     @Autowired
     private UsersRepository userFindByIdService;
 
