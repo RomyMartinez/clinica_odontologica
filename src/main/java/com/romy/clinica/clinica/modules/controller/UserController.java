@@ -29,9 +29,6 @@ public class UserController {
     private UserCreateService userCreateService;
 
     @Autowired
-    private UserFindById userFindByIdService;
-
-    @Autowired
     private UserListService userListService;
 
     @Autowired
@@ -50,17 +47,6 @@ public class UserController {
         }
     }
 
-
-    @GetMapping("get-user")
-    public ResponseEntity<Object> getUser(HttpServletRequest request){
-        var id = request.getAttribute("user_id");
-        try{
-            var userDTOResponse = this.userFindByIdService.execute(id.toString());
-            return ResponseEntity.ok().body(userDTOResponse);
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
 
     @GetMapping
     public ResponseEntity<Object> getUsers(){

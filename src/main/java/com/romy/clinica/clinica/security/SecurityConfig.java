@@ -26,7 +26,7 @@ public class SecurityConfig {
             auth
             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .requestMatchers("/auth/**").permitAll()
-            .requestMatchers("/users/**").permitAll()
+            .requestMatchers("/users/**").hasAnyRole("ADMIN", "DENTISTA")
             .requestMatchers("/paciente/**").hasAnyRole("ADMIN","DENTISTA", "SECRETARIA")
             .requestMatchers("/dentista/**").hasAnyRole("ADMIN","DENTISTA")
             .requestMatchers("/consulta/**").hasAnyRole("ADMIN","DENTISTA", "SECRETARIA");
