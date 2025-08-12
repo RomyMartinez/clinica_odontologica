@@ -3,16 +3,17 @@ import { DentistaCard } from "./DentistaCard";
 import { useState } from "react";
 import { DentistaForm } from "./DentistaForm";
 import { DentistaDetails } from "./DentistaDetails";
+import { ErrorResponse } from "../ui/ErrorResponse";
 
 export function DentistaSettings() {
-  const { data: dentistas, isLoading, isError } = useDentistas();
+  const { data: dentistas, isLoading, isError, error } = useDentistas();
   const [isOpenDetails, setIsOpenDetails] = useState({
     isOpen: false,
     id: "",
   });
   const [open, setOpen] = useState(false);
   if (isLoading) return <div>Carregando...</div>;
-  if (isError) return <div>Erro ao carregar dentistas</div>;
+  if (isError) return <ErrorResponse error={error} />;
 
   function handleOpen() {
     setOpen(true);

@@ -2,10 +2,15 @@ import { useState } from "react";
 import { useUsers } from "../../hooks/users/useUsers";
 import { UserCard } from "./UserCard";
 import { UserForm } from "./UserForm";
+import { ErrorResponse } from "../ui/ErrorResponse";
 
 export function UserSettings() {
-  const { data: users, isLoading, isError } = useUsers();
+  const { data: users, isLoading, isError, error } = useUsers();
   const [open, setOpen] = useState(false);
+
+  if (isError) {
+    return <ErrorResponse error={error} />;
+  }
 
   function handleOpen() {
     setOpen(true);
@@ -16,7 +21,6 @@ export function UserSettings() {
   }
 
   if (isLoading) return <div>Carregando...</div>;
-  if (isError) return <div>Erro ao carregar usuários</div>;
 
   const usersList = users || [];
 

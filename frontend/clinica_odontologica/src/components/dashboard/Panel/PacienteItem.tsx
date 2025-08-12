@@ -54,7 +54,7 @@ export function PacienteItem({ consulta }: { consulta: Consulta }) {
       </td>
       <td className="py-3 px-2">
         <NavLink
-          to={`/pacientes/${consulta.paciente.id}`}
+          to={`/pacientes`}
           className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
         >
           Ver perfil
