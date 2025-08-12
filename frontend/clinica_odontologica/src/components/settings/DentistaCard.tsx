@@ -58,12 +58,13 @@ export function DentistaCard({ dentista, onOpenDetails }: DentistaCardProps) {
           </div>
 
           <div className="flex items-center space-x-2 flex-shrink-0">
-            <div
+            <button
               className={`flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium cursor-pointer ${
                 dentista.ativo
                   ? "bg-green-100 text-green-800 border border-green-200"
                   : "bg-red-100 text-red-800 border border-red-200"
               }`}
+              disabled={isPendingAlterarStatus}
               onClick={handleAlterarStatus}
             >
               {dentista.ativo ? (
@@ -77,7 +78,7 @@ export function DentistaCard({ dentista, onOpenDetails }: DentistaCardProps) {
                   <span className="text-xs font-medium">Inativo</span>
                 </>
               )}
-            </div>
+            </button>
           </div>
         </div>
 
