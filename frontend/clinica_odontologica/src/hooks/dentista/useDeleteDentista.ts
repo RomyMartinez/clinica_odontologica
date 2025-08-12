@@ -17,7 +17,6 @@ async function deleteDentista(id: string) {
     const response = await api.delete(`/dentista/${id}`);
     return response.data;
   } catch (error: any) {
-    console.log(error);
     throw new Error("Error " + error.response.data);
   }
 }

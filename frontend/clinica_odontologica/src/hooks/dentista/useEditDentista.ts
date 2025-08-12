@@ -18,11 +18,14 @@ async function editDentista(dentista: editDentista) {
     const response = await api.patch(`/dentista/${dentista.id}`, dentista.body);
     return response.data;
   } catch (error: any) {
+    if (error.response?.status === 403) {
+      throw new Error(
+        "Error: Você não tem permissão para editar este dentista"
+      );
+    }
     if (error.response.data[0].message) {
-      console.log(error.response.data[0].message);
       throw new Error("Error " + error.response.data[0].message);
     } else {
-      console.log(error.response.data);
       throw new Error("Error " + error.response.data);
     }
   }

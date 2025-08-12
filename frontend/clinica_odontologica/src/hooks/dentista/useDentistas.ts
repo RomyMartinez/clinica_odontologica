@@ -14,9 +14,9 @@ async function getDentistas() {
     return response.data;
   } catch (error: any) {
     if (error.response?.status === 401 || error.response?.status === 403) {
-      throw new Error("Error " + error.message);
+      throw new Error("Error: Você não tem permissão para ver os dentistas");
     }
 
-    throw new Error("Error " + error.message);
+    throw new Error("Error " + error.response.data);
   }
 }
