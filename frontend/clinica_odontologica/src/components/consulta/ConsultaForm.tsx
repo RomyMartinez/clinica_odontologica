@@ -1,6 +1,6 @@
 import { useCreateConsulta } from "../../hooks/consultas/useCreateConsulta";
 import type { CreateConsulta } from "../../interfaces/consulta";
-import { usePacientes } from "../../hooks/usePacientes";
+import { usePacientes } from "../../hooks/pacientes/usePacientes";
 import { useDentista } from "../../hooks/consultas/useDentista";
 import { FormField } from "../ui/FormField";
 import type { Dentista } from "../../interfaces/dentista";
@@ -97,11 +97,13 @@ export function ConsultaForm({ isOpen, onClose }: ConsultaFormProps) {
             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white text-gray-900"
           >
             <option value="">Selecione um dentista</option>
-            {dentistas?.map((dentista: Dentista) => (
-              <option key={dentista.id} value={dentista.id}>
-                {dentista.nome}
-              </option>
-            ))}
+            {dentistas
+              ?.filter((dentista: Dentista) => dentista.ativo)
+              .map((dentista: Dentista) => (
+                <option key={dentista.id} value={dentista.id}>
+                  {dentista.nome}
+                </option>
+              ))}
           </select>
         </FormField>
         <FormField label="Data e hora" htmlFor="dataHora">

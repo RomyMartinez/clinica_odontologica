@@ -8,6 +8,7 @@ import { useEditConsulta } from "../../hooks/consultas/useEditConsulta";
 import { useEffect, useState } from "react";
 import { FormField } from "../ui/FormField";
 import { getStatusColor } from "../../utils/StatusColor";
+import { formattedCpf } from "../../utils/formattedCpf";
 
 interface ConsultaDetailsProps {
   id: string;
@@ -16,7 +17,6 @@ interface ConsultaDetailsProps {
 }
 
 export function ConsultaDetails({ id, isOpen, onClose }: ConsultaDetailsProps) {
-  if (!isOpen) return null;
   const { mutate: editConsulta, isPending } = useEditConsulta();
   const { data: consulta, isLoading } = useGetConsulta(id);
   const [isEditing, setIsEditing] = useState(false);
@@ -124,7 +124,7 @@ export function ConsultaDetails({ id, isOpen, onClose }: ConsultaDetailsProps) {
                   <div className="flex justify-between">
                     <span className="text-gray-600">CPF:</span>
                     <span className="font-medium text-gray-900">
-                      {consulta.paciente.cpf}
+                      {formattedCpf(consulta.paciente.cpf)}
                     </span>
                   </div>
                   <div className="flex justify-between">
@@ -154,9 +154,9 @@ export function ConsultaDetails({ id, isOpen, onClose }: ConsultaDetailsProps) {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">CRM:</span>
+                    <span className="text-gray-600">CRO:</span>
                     <span className="font-medium text-gray-900">
-                      {consulta.dentista.crm}
+                      {consulta.dentista.cro}
                     </span>
                   </div>
                 </div>
