@@ -1,7 +1,7 @@
 import { CardBoard } from "./CardBoard";
 import { Users, Calendar, CheckCircle } from "lucide-react";
 import { useConsultas } from "../../../hooks/consultas/useConsultas";
-import { usePacientes } from "../../../hooks/usePacientes";
+import { usePacientes } from "../../../hooks/pacientes/usePacientes";
 
 export function Board() {
   const { data: consultasList, isLoading } = useConsultas();

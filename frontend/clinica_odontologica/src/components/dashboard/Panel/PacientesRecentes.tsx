@@ -83,7 +83,7 @@ export function PacientesRecentes() {
               </thead>
               <tbody>
                 {pacientesRecentes?.map((consulta) => (
-                  <PacienteItem consulta={consulta} />
+                  <PacienteItem key={consulta.id} consulta={consulta} />
                 ))}
 
                 {(!pacientesRecentes || pacientesRecentes.length === 0) && (

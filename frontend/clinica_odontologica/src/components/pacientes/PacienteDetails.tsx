@@ -1,9 +1,9 @@
-import { useGetPaciente } from "../../hooks/useGetPaciente";
+import { useGetPaciente } from "../../hooks/pacientes/useGetPaciente";
 import { Dialog } from "../ui/Dialog";
 import { formattedDataYear } from "../../utils/formattedDataYear";
 import { FormField } from "../ui/FormField";
 import { useEffect, useState } from "react";
-import { useEditPaciente } from "../../hooks/useEditPaciente";
+import { useEditPaciente } from "../../hooks/pacientes/useEditPaciente";
 
 interface PacienteDetailsProps {
   isOpen: boolean;
@@ -16,10 +16,7 @@ export function PacienteDetails({
   onClose,
   cpf,
 }: PacienteDetailsProps) {
-  if (!isOpen) return null;
-  const { data: paciente, isLoading } = useGetPaciente(cpf);
-
-  if (isLoading) return <div>Carregando...</div>;
+  const { data: paciente } = useGetPaciente(cpf);
 
   const [isEditing, setIsEditing] = useState(false);
   const { mutate: editPaciente, isPending, isError, error } = useEditPaciente();
@@ -71,6 +68,12 @@ export function PacienteDetails({
   }
 
   useEffect(() => {
+    setOldData({
+      nome: paciente?.nome,
+      telefone: paciente?.telefone,
+      email: paciente?.email,
+      dataNascimento: paciente?.dataNascimento,
+    });
     return () => {
       setIsEditing(false);
       setValidationError("");

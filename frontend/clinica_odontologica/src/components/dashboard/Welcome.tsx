@@ -1,4 +1,4 @@
-import { useUser } from "../../hooks/useUser";
+import { useUser } from "../../hooks/users/useUser";
 import { formattedUsername } from "../../utils/formattedUsername";
 
 export function Welcome() {

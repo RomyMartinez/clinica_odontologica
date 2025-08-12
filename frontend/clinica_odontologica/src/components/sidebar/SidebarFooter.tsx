@@ -1,5 +1,5 @@
 import { CircleUserRound } from "lucide-react";
-import { useUser } from "../../hooks/useUser";
+import { useUser } from "../../hooks/users/useUser";
 import type { userInterface } from "../../interfaces/user";
 import { formattedUsername } from "../../utils/formattedUsername";
 import { useAuth } from "../../contexts/AuthContext";

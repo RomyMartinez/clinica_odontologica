@@ -2,7 +2,7 @@ import { SidebarHeader } from "./SidebarHeader";
 import { SidebarMenu } from "./SidebarMenu";
 import { SidebarFooter } from "./SidebarFooter";
 import { Outlet } from "react-router-dom";
-import { useUser } from "../../hooks/useUser";
+import { useUser } from "../../hooks/users/useUser";
 import { LoadingPage } from "../../pages/LoadingPage";
 import { ErrorPage } from "../../pages/ErrorPage";
 

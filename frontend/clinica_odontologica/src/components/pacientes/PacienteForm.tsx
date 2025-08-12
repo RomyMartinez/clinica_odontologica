@@ -1,5 +1,5 @@
 import { Dialog } from "../ui/Dialog";
-import { useCreatePaciente } from "../../hooks/useCreatePaciente";
+import { useCreatePaciente } from "../../hooks/pacientes/useCreatePaciente";
 import { FormField } from "../ui/FormField";
 import { useEffect, useState } from "react";
 import { validateCpf } from "../../utils/validateCpf";

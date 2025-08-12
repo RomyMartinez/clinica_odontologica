@@ -2,7 +2,8 @@ import type { Paciente } from "../../interfaces/paciente";
 import { User, Phone, Mail, Calendar, Eye, Trash2 } from "lucide-react";
 import { formattedDataYear } from "../../utils/formattedDataYear";
 import { ButtonCard } from "../ui/ButtonCard";
-import { useDeletePaciente } from "../../hooks/useDeletePaciente";
+import { useDeletePaciente } from "../../hooks/pacientes/useDeletePaciente";
+import { formattedCpf } from "../../utils/formattedCpf";
 
 interface PacienteCardProps {
   paciente: Paciente;
@@ -13,9 +14,6 @@ interface PacienteCardProps {
 export function PacienteCard({ paciente, onOpenDetails }: PacienteCardProps) {
   const dataNascimento = formattedDataYear(new Date(paciente?.dataNascimento));
   const dataCadastro = formattedDataYear(new Date(paciente?.createdAt));
-  const formatarCPF = (cpf: string) => {
-    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-  };
 
   const { mutate: deletePaciente } = useDeletePaciente();
 
@@ -45,7 +43,7 @@ export function PacienteCard({ paciente, onOpenDetails }: PacienteCardProps) {
         <div className="flex items-center gap-2">
           <User size={18} className="text-gray-600" />
           <span className="text-sm font-medium text-gray-800">
-            CPF: {formatarCPF(paciente.cpf)}
+            CPF: {formattedCpf(paciente.cpf)}
           </span>
         </div>
       </div>
