@@ -1,12 +1,12 @@
 import { Header } from "../components/ui/Header";
 import { AddBar } from "../components/ui/AddBar";
-import { GridConsulta } from "../components/Consulta.tsx/GridConsulta";
+import { GridConsulta } from "../components/consulta/GridConsulta";
 import { useConsultas } from "../hooks/consultas/useConsultas";
 import { LoadingPage } from "./LoadingPage";
 import { ErrorPage } from "./ErrorPage";
 import { useState } from "react";
-import { ConsultaForm } from "../components/Consulta.tsx/ConsultaForm";
-import { ConsultaDetails } from "../components/Consulta.tsx/ConsultaDetails";
+import { ConsultaForm } from "../components/consulta/ConsultaForm";
+import { ConsultaDetails } from "../components/consulta/ConsultaDetails";
 import { useCancelar } from "../hooks/consultas/useCancelar";
 import { useConcluir } from "../hooks/consultas/useConcluir";
 import { useDeleteConsulta } from "../hooks/consultas/useDeleteConsulta";
@@ -77,12 +77,14 @@ export function Consultas() {
           />
         </div>
       </div>
-      <ConsultaForm isOpen={open} onClose={() => setOpen(false)} />
-      <ConsultaDetails
-        id={openDetails.consultaId}
-        isOpen={openDetails.isOpen}
-        onClose={handleCloseDetails}
-      />
+      {open && <ConsultaForm isOpen={open} onClose={() => setOpen(false)} />}
+      {openDetails.isOpen && (
+        <ConsultaDetails
+          id={openDetails.consultaId}
+          isOpen={openDetails.isOpen}
+          onClose={handleCloseDetails}
+        />
+      )}
     </div>
   );
 }

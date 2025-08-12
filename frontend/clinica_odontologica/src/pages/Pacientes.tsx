@@ -1,7 +1,7 @@
 import { Header } from "../components/ui/Header";
 import { AddBar } from "../components/ui/AddBar";
 import { GridPacientes } from "../components/pacientes/GridPacientes";
-import { usePacientes } from "../hooks/usePacientes";
+import { usePacientes } from "../hooks/pacientes/usePacientes";
 import { PacienteForm } from "../components/pacientes/PacienteForm";
 import { useState } from "react";
 import { PacienteDetails } from "../components/pacientes/PacienteDetails";
@@ -37,12 +37,16 @@ export function Pacientes() {
           onOpenDetails={handleOpenDetails}
         />
       )}
-      <PacienteForm isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      <PacienteDetails
-        isOpen={isOpenDetails.isOpen}
-        onClose={() => setIsOpenDetails({ isOpen: false, cpf: "" })}
-        cpf={isOpenDetails.cpf}
-      />
+      {isOpen && (
+        <PacienteForm isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      )}
+      {isOpenDetails.isOpen && (
+        <PacienteDetails
+          isOpen={isOpenDetails.isOpen}
+          onClose={() => setIsOpenDetails({ isOpen: false, cpf: "" })}
+          cpf={isOpenDetails.cpf}
+        />
+      )}
     </div>
   );
 }
